@@ -17,12 +17,12 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-slate-900">Settings</h1>
-        <p className="text-slate-600 mt-1">Manage your account and application preferences</p>
+        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+        <p className="text-muted-foreground mt-1">Manage your account and application preferences</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-4">
           <nav className="space-y-1">
             {sections.map((section) => {
               const Icon = section.icon;
@@ -32,8 +32,8 @@ export default function SettingsPage() {
                   onClick={() => setActiveSection(section.id)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-left ${
                     activeSection === section.id
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-slate-600 hover:bg-slate-50"
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
                   <Icon size={20} />
@@ -44,7 +44,7 @@ export default function SettingsPage() {
           </nav>
         </div>
 
-        <div className="lg:col-span-3 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="lg:col-span-3 bg-card rounded-xl shadow-sm border border-border p-6">
           {activeSection === "profile" && <ProfileSection />}
           {activeSection === "notifications" && <NotificationsSection />}
           {activeSection === "integrations" && <IntegrationsSection />}
@@ -60,49 +60,49 @@ function ProfileSection() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-slate-900">Profile Settings</h2>
-        <p className="text-sm text-slate-600 mt-1">Update your personal information</p>
+        <h2 className="text-xl font-semibold">Profile Settings</h2>
+        <p className="text-sm text-muted-foreground mt-1">Update your personal information</p>
       </div>
 
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-2">First Name</label>
             <input
               type="text"
               defaultValue="Admin"
-              className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-2">Last Name</label>
             <input
               type="text"
               defaultValue="User"
-              className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Email</label>
           <input
             type="email"
             defaultValue="admin@gravityit.com"
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Company</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Company</label>
           <input
             type="text"
             defaultValue="Gravity IT Resources"
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+        <button className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
           <Save size={18} />
           Save Changes
         </button>
@@ -115,8 +115,8 @@ function NotificationsSection() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-slate-900">Notification Preferences</h2>
-        <p className="text-sm text-slate-600 mt-1">Choose what notifications you want to receive</p>
+        <h2 className="text-xl font-semibold">Notification Preferences</h2>
+        <p className="text-sm text-muted-foreground mt-1">Choose what notifications you want to receive</p>
       </div>
 
       <div className="space-y-4">
@@ -135,7 +135,7 @@ function NotificationsSection() {
         />
       </div>
 
-      <button className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+      <button className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
         <Save size={18} />
         Save Preferences
       </button>
@@ -147,8 +147,8 @@ function IntegrationsSection() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-slate-900">Integrations</h2>
-        <p className="text-sm text-slate-600 mt-1">Connect external services to enhance your workflow</p>
+        <h2 className="text-xl font-semibold">Integrations</h2>
+        <p className="text-sm text-muted-foreground mt-1">Connect external services to enhance your workflow</p>
       </div>
 
       <div className="space-y-4">
@@ -178,8 +178,8 @@ function EmailTemplatesSection() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-slate-900">Email Templates</h2>
-        <p className="text-sm text-slate-600 mt-1">Manage your outreach email templates</p>
+        <h2 className="text-xl font-semibold">Email Templates</h2>
+        <p className="text-sm text-muted-foreground mt-1">Manage your outreach email templates</p>
       </div>
 
       <div className="space-y-4">
@@ -200,7 +200,7 @@ function EmailTemplatesSection() {
         />
       </div>
 
-      <button className="flex items-center gap-2 border border-slate-300 text-slate-700 px-6 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+      <button className="flex items-center gap-2 border border-input text-muted-foreground hover:text-foreground px-6 py-2 rounded-lg hover:bg-accent transition-colors">
         <Mail size={18} />
         Create New Template
       </button>
@@ -212,36 +212,36 @@ function SecuritySection() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-slate-900">Security Settings</h2>
-        <p className="text-sm text-slate-600 mt-1">Manage your account security</p>
+        <h2 className="text-xl font-semibold">Security Settings</h2>
+        <p className="text-sm text-muted-foreground mt-1">Manage your account security</p>
       </div>
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Current Password</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Current Password</label>
           <input
             type="password"
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">New Password</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">New Password</label>
           <input
             type="password"
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Confirm New Password</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Confirm New Password</label>
           <input
             type="password"
-            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+        <button className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
           <Key size={18} />
           Update Password
         </button>
@@ -254,19 +254,19 @@ function NotificationToggle({ label, description }: { label: string; description
   const [enabled, setEnabled] = useState(true);
 
   return (
-    <div className="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
+    <div className="flex items-center justify-between p-4 border border-border rounded-lg">
       <div>
-        <h4 className="font-medium text-slate-900">{label}</h4>
-        <p className="text-sm text-slate-600">{description}</p>
+        <h4 className="font-medium">{label}</h4>
+        <p className="text-sm text-muted-foreground">{description}</p>
       </div>
       <button
         onClick={() => setEnabled(!enabled)}
         className={`relative w-12 h-6 rounded-full transition-colors ${
-          enabled ? "bg-blue-600" : "bg-slate-300"
+          enabled ? "bg-primary" : "bg-muted"
         }`}
       >
         <span
-          className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
+          className={`absolute top-1 left-1 w-4 h-4 bg-background rounded-full transition-transform ${
             enabled ? "translate-x-6" : ""
           }`}
         />
@@ -287,17 +287,17 @@ function IntegrationCard({
   apiKey?: string;
 }) {
   return (
-    <div className="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
+    <div className="flex items-center justify-between p-4 border border-border rounded-lg">
       <div>
-        <h4 className="font-medium text-slate-900">{name}</h4>
-        <p className="text-sm text-slate-600">{description}</p>
-        {connected && apiKey && <p className="text-xs text-slate-500 mt-1 font-mono">{apiKey}</p>}
+        <h4 className="font-medium">{name}</h4>
+        <p className="text-sm text-muted-foreground">{description}</p>
+        {connected && apiKey && <p className="text-xs text-muted-foreground mt-1 font-mono">{apiKey}</p>}
       </div>
       <button
         className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
           connected
-            ? "bg-green-100 text-green-700 hover:bg-green-200"
-            : "bg-blue-600 text-white hover:bg-blue-700"
+            ? "bg-green-500/10 text-green-500 hover:bg-green-500/20"
+            : "bg-primary text-primary-foreground hover:bg-primary/90"
         }`}
       >
         {connected ? "Connected" : "Connect"}
@@ -308,13 +308,13 @@ function IntegrationCard({
 
 function TemplateCard({ name, subject, preview }: { name: string; subject: string; preview: string }) {
   return (
-    <div className="p-4 border border-slate-200 rounded-lg hover:shadow-md transition-shadow">
-      <h4 className="font-medium text-slate-900">{name}</h4>
-      <p className="text-sm text-slate-600 mt-1">
+    <div className="p-4 border border-border rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-medium">{name}</h4>
+      <p className="text-sm text-muted-foreground mt-1">
         <span className="font-medium">Subject:</span> {subject}
       </p>
-      <p className="text-sm text-slate-500 mt-2 line-clamp-2">{preview}</p>
-      <button className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium">Edit Template</button>
+      <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{preview}</p>
+      <button className="mt-3 text-sm text-primary hover:text-primary/80 font-medium">Edit Template</button>
     </div>
   );
 }
