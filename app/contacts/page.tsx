@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { supabase, Contact, Lead } from "@/lib/supabase";
 import { Search, Filter, Download, Plus, Mail, Phone, MapPin, Briefcase } from "lucide-react";
 
@@ -139,35 +137,6 @@ export default function ContactsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <header className="bg-white border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/download.png"
-                alt="Gravity IT Resources"
-                width={280}
-                height={84}
-                className="h-20 w-auto"
-              />
-              <div className="h-8 w-px bg-slate-300" />
-              <h1 className="text-xl font-semibold text-slate-800">Outreach Portal</h1>
-            </div>
-            <nav className="flex items-center gap-6">
-              <Link href="/" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
-                Dashboard
-              </Link>
-              <Link href="/campaigns" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
-                Campaigns
-              </Link>
-              <Link href="/contacts" className="text-sm font-medium text-blue-600 border-b-2 border-blue-600 pb-1">
-                Contacts
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
       <main className="max-w-7xl mx-auto px-6 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
