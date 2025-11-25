@@ -40,7 +40,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen flex bg-background text-foreground">
+    <div className="min-h-screen flex bg-background text-foreground transition-colors duration-300">
       <aside
         className={`transition-all duration-300 border-r border-border bg-card shadow-lg ${
           sidebarOpen ? "w-64" : "w-20"
@@ -53,7 +53,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
               alt="Gravity IT Resources"
               width={200}
               height={60}
-              className="h-16 w-auto dark:invert"
+              // Removed 'dark:invert' to keep logo original color (preventing orange flip)
+              className="h-16 w-auto" 
             />
           ) : (
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
@@ -124,8 +125,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
                   <input
                     type="text"
-                    placeholder="Search..."
-                    className="w-full pl-10 pr-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Search campaigns, contacts, or interviews..."
+                    className="w-full pl-10 pr-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
                   />
                 </div>
               </div>
