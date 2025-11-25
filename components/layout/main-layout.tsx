@@ -40,30 +40,33 @@ export default function MainLayout({ children }: MainLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen flex bg-background text-foreground transition-colors duration-300">
+    <div className="min-h-screen flex bg-slate-50">
+      {/* Dark Sidebar */}
       <aside
-        className={`transition-all duration-300 border-r border-border bg-card shadow-lg ${
+        className={`transition-all duration-300 bg-slate-900 border-r border-slate-800 shadow-xl ${
           sidebarOpen ? "w-64" : "w-20"
         } flex flex-col fixed h-full z-30`}
       >
-        <div className="p-6 border-b border-border flex items-center justify-center">
+        <div className="p-6 border-b border-slate-800 flex items-center justify-center bg-slate-900">
           {sidebarOpen ? (
             <Image
               src="/download.png"
               alt="Gravity IT Resources"
               width={200}
               height={60}
-              // Removed 'dark:invert' to keep logo original color (preventing orange flip)
-              className="h-16 w-auto" 
+              // Ensure logo is visible on dark background. 
+              // If your logo is dark text, you might need brightness-0 invert
+              // If it's blue/white, it should pop naturally.
+              className="h-16 w-auto object-contain"
             />
           ) : (
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">G</span>
+            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-900/20">
+              <span className="text-white font-bold text-lg">G</span>
             </div>
           )}
         </div>
 
-        <nav className="flex-1 p-4 space-y-2">
+        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const active = isActive(tab.href);
@@ -74,36 +77,36 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 href={tab.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
                   active
-                    ? "bg-primary/10 text-primary shadow-sm"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    ? "bg-blue-600 text-white shadow-md shadow-blue-900/20"
+                    : "text-slate-400 hover:bg-slate-800 hover:text-white"
                 }`}
               >
                 <Icon
                   size={20}
                   className={`flex-shrink-0 ${
-                    active ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                    active ? "text-white" : "text-slate-400 group-hover:text-white"
                   }`}
                 />
                 {sidebarOpen && (
-                  <span className="font-medium text-sm">{tab.label}</span>
+                  <span className="font-medium text-sm tracking-wide">{tab.label}</span>
                 )}
                 {active && sidebarOpen && (
-                  <ChevronRight size={16} className="ml-auto" />
+                  <ChevronRight size={16} className="ml-auto text-white/70" />
                 )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="p-4 border-t border-border">
+        <div className="p-4 border-t border-slate-800 bg-slate-900">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 text-muted-foreground hover:bg-muted rounded-lg transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-colors"
           >
             {sidebarOpen ? (
               <>
                 <ChevronLeft size={20} />
-                <span className="text-sm">Collapse</span>
+                <span className="text-sm font-medium">Collapse</span>
               </>
             ) : (
               <ChevronRight size={20} />
@@ -112,38 +115,41 @@ export default function MainLayout({ children }: MainLayoutProps) {
         </div>
       </aside>
 
+      {/* Main Content Area - Light Background */}
       <div
         className={`flex-1 transition-all duration-300 ${
           sidebarOpen ? "ml-64" : "ml-20"
-        }`}
+        } bg-slate-50 min-h-screen`}
       >
-        <header className="bg-card border-b border-border shadow-sm sticky top-0 z-20">
-          <div className="px-6 py-4">
+        <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-20">
+          <div className="px-8 py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4 flex-1 max-w-2xl">
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
+              {/* Search Bar */}
+              <div className="flex items-center gap-4 flex-1 max-w-xl">
+                <div className="relative flex-1 group">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors" size={18} />
                   <input
                     type="text"
-                    placeholder="Search campaigns, contacts, or interviews..."
-                    className="w-full pl-10 pr-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-muted-foreground"
+                    placeholder="Search..."
+                    className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-400 transition-all placeholder:text-slate-400 text-slate-700 font-medium"
                   />
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
-                <button className="relative p-2 text-muted-foreground hover:bg-muted rounded-lg transition-colors">
+              {/* Header Actions */}
+              <div className="flex items-center gap-6">
+                <button className="relative p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
                   <Bell size={20} />
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full"></span>
+                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
                 </button>
 
-                <div className="flex items-center gap-3 pl-4 border-l border-border">
-                  <div className="w-9 h-9 bg-primary rounded-full flex items-center justify-center">
-                    <span className="text-primary-foreground font-semibold text-sm">AD</span>
+                <div className="flex items-center gap-3 pl-6 border-l border-slate-200">
+                  <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm text-white font-semibold text-sm">
+                    AD
                   </div>
                   <div className="hidden md:block">
-                    <p className="text-sm font-medium">Admin User</p>
-                    <p className="text-xs text-muted-foreground">admin@gravityit.com</p>
+                    <p className="text-sm font-semibold text-slate-700">Admin User</p>
+                    <p className="text-xs text-slate-500">admin@gravityit.com</p>
                   </div>
                 </div>
               </div>
@@ -151,7 +157,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
           </div>
         </header>
 
-        <main className="p-6">
+        <main className="p-8 max-w-[1600px] mx-auto">
           {children}
         </main>
       </div>
